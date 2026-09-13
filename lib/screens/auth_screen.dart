@@ -38,6 +38,12 @@ class _AuthScreenState extends State<AuthScreen> { // state = memorija, behind t
     }
 
     if(_isRegisterMode){
+      if (widget.appService.emailExists(email)){
+        setState(() {
+          _errorMessage = 'Uneti email je već registrovan';
+        });
+        return;
+        }
       final name = _nameController.text;
       final user = widget.appService.register(name, email, password);
       widget.onLoginSuccess(user); // ako je register pravi novog usera, dodaje ga u listu i poziva onLoginSuccess callback sa tim userom

@@ -16,6 +16,10 @@ class AppService{
     return null; 
   }
 
+  bool emailExists(String email){
+    return _users.any((user) => user.email == email);
+  }
+
   BudgetUser register(String name, String email, String password){
     final newUser = BudgetUser(name: name, email: email, password:  password);
     _users.add(newUser);
